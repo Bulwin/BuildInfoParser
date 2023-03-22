@@ -124,6 +124,7 @@ MonoBehaviour:
   AppName: {fileID: 141621259860877548}
   Size: {fileID: 141621261101830424}
   OpenBuild: {fileID: 6515524907609863514}
+  SizeBack: {fileID: 141621260797159307}
 --- !u!114 &6515524907609863514
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -575,7 +576,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.4716981, g: 0.4716981, b: 0.4716981, a: 1}
+  m_Color: {r: 0.47058827, g: 0.47058827, b: 0.47058827, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1

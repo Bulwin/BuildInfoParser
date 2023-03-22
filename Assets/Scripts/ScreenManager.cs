@@ -4,6 +4,7 @@ using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
+using System.Linq;
 
 public class ScreenManager : MonoBehaviour
 {
@@ -42,13 +43,18 @@ public class ScreenManager : MonoBehaviour
 
     void LoadPreviousData(string projectToShow, bool updateDropdownOptions)
     {
+        Dictionary<string, AppVersionData> Vdata = new Dictionary<string, AppVersionData>();
+        ParseSizeToFloat pstf = new ParseSizeToFloat();
         Debug.Log(projectToShow);
         VersionsDictionary.LoadDictionary();
         ClearGrid(PreviousBuild);
-        foreach (var pd in VersionsDictionary.versionData)
+        Vdata = SortXmls();
+        string previousSize = "0 MB";
+        foreach (var pd in Vdata)
         {
             if (projectToShow.Equals("Show ALL") || pd.Value.AppName.Equals(projectToShow))
             {
+                
                 GameObject PreviousResult = Instantiate(PreviousBuildPrefab);
                 PreviousResult.transform.SetParent(PreviousBuild, false);
                 PreviousResult.GetComponent<PreviousBuild>().FillPreviousBuildPrefab(pd.Key, pd.Value.AppName, pd.Value.Size);
@@ -56,6 +62,15 @@ public class ScreenManager : MonoBehaviour
                 {
                     ParseXML(GetXml(pd.Key));
                 });
+                if (pstf.ParseToFloat(pd.Value.Size) > pstf.ParseToFloat(previousSize) && !projectToShow.Equals("Show ALL"))
+                {
+                    PreviousResult.GetComponent<PreviousBuild>().SetSizeBack(1);
+                }
+                else if (pstf.ParseToFloat(pd.Value.Size) < pstf.ParseToFloat(previousSize) && !projectToShow.Equals("Show ALL"))
+                {
+                    PreviousResult.GetComponent<PreviousBuild>().SetSizeBack(2);
+                }
+                previousSize = pd.Value.Size;
             }
         }
         if (updateDropdownOptions.Equals(true))
@@ -69,6 +84,12 @@ public class ScreenManager : MonoBehaviour
             XmlSaver xmlSaver = new XmlSaver();
             tmpXML = xmlSaver.LoadXML(version);
             return (tmpXML);
+        }
+
+        Dictionary<string, AppVersionData> SortXmls()
+        {
+            var sortedDict = VersionsDictionary.versionData.OrderByDescending(x => x.Key).ToDictionary(x => x.Key, x => x.Value);
+            return (sortedDict);
         }
     }
 
