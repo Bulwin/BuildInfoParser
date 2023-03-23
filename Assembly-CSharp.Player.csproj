@@ -63,10 +63,10 @@
     <Compile Include="Assets\Scripts\SizePart.cs" />
     <Compile Include="Assets\Scripts\VersionsDictionary.cs" />
     <Compile Include="Assets\Scripts\XmlSaver.cs" />
+    <Compile Include="Assets\Scripts\ParseSizeToFloat.cs" />
     <Compile Include="Assets\Scripts\BuildInfo.cs" />
     <Compile Include="Assets\Scripts\AppVersionData.cs" />
     <Compile Include="Assets\Scripts\XmlLoader.cs" />
-    <Compile Include="Assets\Scripts\ParseSizeToFloat.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
