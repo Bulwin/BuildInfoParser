@@ -195,7 +195,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.4716981, g: 0.4716981, b: 0.4716981, a: 1}
+  m_Color: {r: 0.8679245, g: 0.05322181, b: 0.05322181, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -758,3 +758,4 @@ MonoBehaviour:
   Position: {fileID: 4102008423750343251}
   AssetName: {fileID: 4102008424739821029}
   Size: {fileID: 4102008424374363153}
+  SizeBack: {fileID: 4102008423805440642}

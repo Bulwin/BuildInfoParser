@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
+using System.Linq;
 
 public class VersionsDictionary : MonoBehaviour
 {
@@ -69,5 +70,24 @@ public class VersionsDictionary : MonoBehaviour
             SaveDictionary();
         }
 
+    }
+
+    public static Dictionary<string, AppVersionData> GetversionDatabyProject(string project)
+    {
+        Dictionary<string, AppVersionData> projectVersionData = new Dictionary<string, AppVersionData>();
+        foreach(var vd in versionData)
+        {
+        if (vd.Value.AppName.Equals(project))
+            {
+                projectVersionData.Add(vd.Key,vd.Value);
+            }
+        }
+        return SortXmls(projectVersionData);
+    }
+
+    static public Dictionary<string, AppVersionData> SortXmls(Dictionary<string, AppVersionData> versionDataDic)
+    {
+        var sortedDict = versionDataDic.OrderBy(x => x.Key).ToDictionary(x => x.Key, x => x.Value);
+        return (sortedDict);
     }
 }
